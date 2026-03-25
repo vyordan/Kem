@@ -1,0 +1,62 @@
+quetzal/
+│
+├── CMakeLists.txt                    # Build principal con opciones
+├── README.md                          # Documentación principal
+├── .gitignore
+├── Dockerfile                         # Para el servicio (opcional)
+│
+├── core/                              # FRONTEND COMPLETO (reciclable)
+│   ├── CMakeLists.txt
+│   ├── include/quetzal/
+│   │   ├── Lexer.hpp                  # Análisis léxico
+│   │   ├── Parser.hpp                 # Análisis sintáctico
+│   │   ├── AST.hpp                    # Árbol sintáctico abstracto
+│   │   ├── SemanticAnalyzer.hpp       # Análisis semántico
+│   │   ├── SymbolTable.hpp            # Tabla de símbolos
+│   │   └── ErrorHandler.hpp           # Manejo de errores
+│   └── src/
+│       ├── Lexer.cpp
+│       ├── Parser.cpp
+│       ├── AST.cpp
+│       ├── SemanticAnalyzer.cpp
+│       ├── SymbolTable.cpp
+│       └── ErrorHandler.cpp
+│
+├── backends/                          # BACKENDS INTERCAMBIABLES
+│   ├── CMakeLists.txt
+│   ├── c_backend/                     # FASE 1: Generador de C
+│   │   ├── include/CBackend.hpp
+│   │   └── src/CBackend.cpp
+│   └── llvm_backend/                  # FASE 2: Backend con LLVM
+│       ├── include/
+│       │   ├── IRGenerator.hpp        # AST → LLVM IR
+│       │   ├── JITEngine.hpp          # Motor JIT de LLVM
+│       │   └── Optimizer.hpp          # Pases de optimización
+│       └── src/
+│           ├── IRGenerator.cpp
+│           ├── JITEngine.cpp
+│           └── Optimizer.cpp
+│
+├── cli/                               # INTERFAZ LÍNEA DE COMANDOS (Fase 1)
+│   ├── CMakeLists.txt
+│   └── src/main.cpp                   # Compila .ql → .c
+│
+├── jit_cli/                           # INTERFAZ JIT (Fase 2 - Tesis)
+│   ├── CMakeLists.txt
+│   └── src/main.cpp                   # Ejecuta .ql directamente
+│
+├── service/                           # MICROSERVICIO (Opcional - Bonus)
+│   ├── CMakeLists.txt
+│   ├── proto/quetzal.proto            # Definición gRPC
+│   └── src/server.cpp                 # Servidor gRPC
+│
+└── tests/                             # PRUEBAS COMPLETAS
+    ├── CMakeLists.txt
+    ├── unit/                          # Tests unitarios
+    │   ├── lexer_tests.cpp
+    │   ├── parser_tests.cpp
+    │   ├── semantic_tests.cpp
+    │   └── ir_tests.cpp
+    └── benchmark/                     # Tests de rendimiento
+        ├── benchmark.cpp
+        └── scripts/run_benchmarks.sh
