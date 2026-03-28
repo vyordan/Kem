@@ -1,62 +1,89 @@
-quetzal/
-│
-├── CMakeLists.txt                    # Build principal con opciones
-├── README.md                          # Documentación principal
-├── .gitignore
-├── Dockerfile                         # Para el servicio (opcional)
-│
-├── core/                              # FRONTEND COMPLETO (reciclable)
-│   ├── CMakeLists.txt
-│   ├── include/quetzal/
-│   │   ├── Lexer.hpp                  # Análisis léxico
-│   │   ├── Parser.hpp                 # Análisis sintáctico
-│   │   ├── AST.hpp                    # Árbol sintáctico abstracto
-│   │   ├── SemanticAnalyzer.hpp       # Análisis semántico
-│   │   ├── SymbolTable.hpp            # Tabla de símbolos
-│   │   └── ErrorHandler.hpp           # Manejo de errores
-│   └── src/
-│       ├── Lexer.cpp
-│       ├── Parser.cpp
-│       ├── AST.cpp
-│       ├── SemanticAnalyzer.cpp
-│       ├── SymbolTable.cpp
-│       └── ErrorHandler.cpp
-│
-├── backends/                          # BACKENDS INTERCAMBIABLES
-│   ├── CMakeLists.txt
-│   ├── c_backend/                     # FASE 1: Generador de C
-│   │   ├── include/CBackend.hpp
-│   │   └── src/CBackend.cpp
-│   └── llvm_backend/                  # FASE 2: Backend con LLVM
-│       ├── include/
-│       │   ├── IRGenerator.hpp        # AST → LLVM IR
-│       │   ├── JITEngine.hpp          # Motor JIT de LLVM
-│       │   └── Optimizer.hpp          # Pases de optimización
-│       └── src/
-│           ├── IRGenerator.cpp
-│           ├── JITEngine.cpp
-│           └── Optimizer.cpp
-│
-├── cli/                               # INTERFAZ LÍNEA DE COMANDOS (Fase 1)
-│   ├── CMakeLists.txt
-│   └── src/main.cpp                   # Compila .ql → .c
-│
-├── jit_cli/                           # INTERFAZ JIT (Fase 2 - Tesis)
-│   ├── CMakeLists.txt
-│   └── src/main.cpp                   # Ejecuta .ql directamente
-│
-├── service/                           # MICROSERVICIO (Opcional - Bonus)
-│   ├── CMakeLists.txt
-│   ├── proto/quetzal.proto            # Definición gRPC
-│   └── src/server.cpp                 # Servidor gRPC
-│
-└── tests/                             # PRUEBAS COMPLETAS
-    ├── CMakeLists.txt
-    ├── unit/                          # Tests unitarios
-    │   ├── lexer_tests.cpp
-    │   ├── parser_tests.cpp
-    │   ├── semantic_tests.cpp
-    │   └── ir_tests.cpp
-    └── benchmark/                     # Tests de rendimiento
-        ├── benchmark.cpp
-        └── scripts/run_benchmarks.sh
+¡Entendido! Vamos a consolidar el "Manual de Obra de Kem". Este es el mapa completo de tu lenguaje, diseñado para ser un motor de alto rendimiento (vía LLVM) y una herramienta educativa que no permite que el programador se "vuelva flojo".
+
+Aquí tienes el resumen detallado de tu sintaxis actual, incluyendo la Bandera de Inspección que pediste para el control de calidad.
+
+🏗️ Diccionario Maestro de Kem (Sintaxis 2026)
+1. Prefijos de Identidad (El Corazón de Kem)
+El compilador lee los primeros 4 caracteres y ya sabe qué recurso de memoria asignar.
+
+Tipo de Dato	Variable (v)	Función (f)	Descripción
+Entero	entv_	entf_	Números sin decimales (int).
+Decimal	decv_	decf_	Números con precisión (double/float).
+Texto	texv_	texf_	Cadenas de caracteres (string).
+Booleano	boov_	boof_	Lógica Cierto/Falso (bool).
+Acción	(No aplica)	proc_	Procedimiento (void). No devuelve nada.
+
+2. Palabras Reservadas (Estructura de la Obra)
+Estas son las "vigas" que sostienen el programa.
+
+inicio: El punto de entrada obligatorio (como el main).
+
+enlazar: Para importar librerías o archivos externos.
+
+estructura: Define tipos de datos compuestos (objetos/clases).
+
+devolver: La instrucción para sacar un valor de una función.
+
+si / sino: Control de decisiones.
+
+mientras: El único bucle de Kem (sirve para for y while).
+
+y, o, no: Operadores lógicos en español puro.
+
+3. Símbolos y Operadores (Nativos)
+Aritmética: +, -, *, /
+
+Comparación: ==, !=, >, <, >=, <=
+
+Punteros/Referencias: @ (Para saber dónde está un dato en memoria).
+
+Navegación: . (Para entrar a datos dentro de una estructura).
+
+Bloques: { } para código, ( ) para parámetros, , separador.
+
+Continuidad: ... (Si una línea es muy larga, usas tres puntos para seguir abajo).
+
+🚩 La Bandera de Inspección (--inspeccionar)
+Para que Kem sea rápido "en tiempo real", el compilador normal ignorará errores menores de estilo para no trabar el flujo. Pero si quieres que el compilador sea estricto, usaremos esta bandera al ejecutar:
+
+Comando: kem ejecutar mi_codigo.kem --inspeccionar
+
+¿Qué hace?:
+
+Revisa que todos los prefijos correspondan al dato asignado (ej: que no metas un dec en un entv_).
+
+Valida que no haya variables declaradas que no se usen (limpieza de obra).
+
+Verifica que todas las funciones tengan su devolver si no son proc_.
+
+💻 Ejemplo de Software Real en Kem
+Así se vería un sistema que calcula un impuesto, usando toda tu lógica:
+
+Fragmento de código
+
+enlazar "consola"
+
+// Función que calcula el 15%
+decf_calcular_iva(decv_monto) {
+    decv_impuesto = decv_monto * 0.15
+    devolver decv_impuesto
+}
+
+// Procedimiento que solo muestra el ticket
+proc_imprimir_ticket(texv_cliente, decv_total) {
+    consola.escribir("Cliente: " + texv_cliente)
+    consola.escribir("Total con IVA: " + decv_total)
+}
+
+inicio {
+    texv_nombre = "Obra Centro"
+    decv_subtotal = 1500.50
+    
+    // Usamos la función
+    decv_final = decv_subtotal + decf_calcular_iva(decv_subtotal)
+    
+    // Usamos el procedimiento
+    proc_imprimir_ticket(texv_nombre, decv_final)
+}
+⚡ ¿Por qué es rápido y real?
+Al no tener que "adivinar" tipos (gracias a entv_, decf_, etc.), el compilador puede generar el código de máquina directamente mientras escribes. No hay pasos intermedios lentos.
