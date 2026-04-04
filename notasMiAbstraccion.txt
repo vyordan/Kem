@@ -7,7 +7,7 @@ voy a tener sintaxis propia (totalmente en espaniol) y estas son las palabras re
 
 tipos de datos: entero, decimal, texto y booleano (funciones y arreglos unidimensionales de estos tipos de datos, no solo variables)
 flujo de control: si, sino, mientras, hasta y paso (mientras va ser un bucle universal tipo como el de go, hasta y paso es para cuando se comprote como for (masomenos como el para en pseint))
-bloques: inicio, procedimiento, funcion (procedimiento para cuando no devuelve y funcion para cuando si retorna) ----------DEBATIBLEEEE------------ mas palabras a aprender para estudiante -----------------
+bloques: inicio, procedimiento, estructura, funcion (procedimiento para cuando no devuelve y funcion para cuando si retorna) ----------DEBATIBLEEEE------------ mas palabras a aprender para estudiante -----------------
 cgestion de datos: devolver, referencia y enlazar
 logica: verdadero, falso, y, o, no
 comenarios: comenario, comenario{lineas a coentar} || //, /**/ ---------DEBATIBLEEEE----------por que es intuitivo lo primero pero lo segundo es universal
