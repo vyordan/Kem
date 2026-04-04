@@ -1,0 +1,23 @@
+En este documento pienso escribir y dejar notas de como voy pensado (eso para que no se me olvide mientras desarrollo jajajaja asi que al finalizar 
+el proyecto va a ver una documentacion mas formal xd)
+
+voy a construir un compilador JIT y voy a usar llvm
+mi compilador va tomar un archivo de texto y lo tiene que traducir a codigo IR que es un lenguaje intermedio, esto para luego usar LLVM para pasar al ejecutable en memoria
+voy a tener sintaxis propia (totalmente en espaniol) y estas son las palabras reservadas que pienso incluir:
+
+tipos de datos: entero, decimal, texto y booleano (funciones y arreglos unidimensionales de estos tipos de datos, no solo variables)
+flujo de control: si, sino, mientras, hasta y paso (mientras va ser un bucle universal tipo como el de go, hasta y paso es para cuando se comprote como for (masomenos como el para en pseint))
+bloques: inicio, procedimiento, funcion (procedimiento para cuando no devuelve y funcion para cuando si retorna) ----------DEBATIBLEEEE------------ mas palabras a aprender para estudiante -----------------
+cgestion de datos: devolver, referencia y enlazar
+logica: verdadero, falso, y, o, no
+comenarios: comenario, comenario{lineas a coentar} || //, /**/ ---------DEBATIBLEEEE----------por que es intuitivo lo primero pero lo segundo es universal
+
+estructura: {}, (), []
+aritmetica +, -, *, /, %
+asignacion =
+racionales ==, !=, <, >, >=, <=
+los logicos son el y o y no que puse arriba
+
+NO VOY A USAR ; (estaba pensado en que para saber si continua en la siguiente linea voy a revisar si termina en un operador o si no se cerro un parentesis)
+
+apartir de aqui voy a empezar con el lexer
