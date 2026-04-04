@@ -15,6 +15,7 @@ comenarios: comenario, comenario{lineas a coentar} || //, /**/ ---------DEBATIBL
 estructura: {}, (), []
 aritmetica +, -, *, /, %
 asignacion =
+acceso . (por el tema de las estructuras)
 racionales ==, !=, <, >, >=, <=
 los logicos son el y o y no que puse arriba
 
