@@ -28,7 +28,7 @@ para arch linux necesito:
 
 sudo pacman -S llvm clang lld
 llvm: Las bibliotecas core y herramientas (incluye lli para ejecutar IR)
-clang: El compilador C/C++ (útil para comparar)
+clang: El compilador C/C++ (útil para comparar) NO LO INSTALE
 lld: El linker de LLVM
 ----------------------------------------------
 sudo pacman -S cmake ninja   
