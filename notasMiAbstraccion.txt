@@ -21,4 +21,62 @@ los logicos son el y o y no que puse arriba
 
 NO VOY A USAR ; (estaba pensado en que para saber si continua en la siguiente linea voy a revisar si termina en un operador o si no se cerro un parentesis)
 
+###
+ahorita voy a instalar LLVM para generar codigo IR a mano para entender este lenguaje intermedio, nota de las dependencias que voy a instalar para tomar encuenta cuando haga mi readme xd
+
+para arch linux necesito:
+
+sudo pacman -S llvm clang lld
+llvm: Las bibliotecas core y herramientas (incluye lli para ejecutar IR)
+clang: El compilador C/C++ (útil para comparar)
+lld: El linker de LLVM
+----------------------------------------------
+sudo pacman -S cmake ninja   
+para compilar proyectos con LLVM
+-------------=-----------------------------------------
+# Verificar versión
+llvm-config --version
+
+# Probar el intérprete de IR
+echo 'define i32 @main() { ret i32 42 }' | lli
+# Debería ejecutar silenciosamente (o mostrar 42 si agregas print)
+----------------------------------------------------------
+# Instalar cabeceras y bibliotecas de desarrollo
+sudo pacman -S llvm-libs
+______________________________________________________________________________
+estrucutra de proyecto parecida a la que use en mi compresor, asi modular:
+kem/
+├── CMakeLists.txt
+├── README.md
+├── Dockerfile
+├── .gitignore
+│
+├── include/
+│   ├── kem/
+│   │   ├── Lexer.hpp
+│   │   ├── Parser.hpp
+│   │   ├── AST.hpp
+│   │   ├── IRGenerator.hpp
+│   │   ├── JITEngine.hpp
+│   │   └── ErrorHandler.hpp
+│
+├── src/
+│   ├── Lexer.cpp
+│   ├── Parser.cpp
+│   ├── AST.cpp
+│   ├── IRGenerator.cpp
+│   ├── JITEngine.cpp
+│   └── ErrorHandler.cpp
+│
+├── cli/
+│   ├── CMakeLists.txt
+│   └── main.cpp
+│
+├── grpc/           (futuro)
+├── web/            (futuro)
+└── tests/
+    ├── lexer/
+    ├── parser/
+    └── integration/
+
 apartir de aqui voy a empezar con el lexer
