@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hola Mundo | Minimalista</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --color-bg: #f9f9f9;
+            --color-surface: #ffffff;
+            --color-text: #333333;
+            --color-text-light: #666666;
+            --color-text-lighter: #999999;
+            --color-accent: #8a817c;
+            --color-accent-light: #bcb8b1;
+            --color-accent-dark: #6c757d;
+            --color-border: #eaeaea;
+            --color-shadow: rgba(0, 0, 0, 0.05);
+            --color-shadow-light: rgba(0, 0, 0, 0.02);
+            --color-overlay: rgba(0, 0, 0, 0.03);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            line-height: 1.6;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Patrón sutil de fondo */
+        .background-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 15% 50%, var(--color-overlay) 0%, transparent 20%),
+                radial-gradient(circle at 85% 30%, var(--color-overlay) 0%, transparent 20%),
+                radial-gradient(circle at 50% 80%, var(--color-overlay) 0%, transparent 20%);
+            z-index: -1;
+        }
+
+        /* Líneas sutiles decorativas */
+        .decorative-line {
+            position: absolute;
+            height: 1px;
+            background-color: var(--color-border);
+            z-index: -1;
+        }
+
+        .line-1 {
+            top: 20%;
+            left: 10%;
+            width: 30%;
+        }
+
+        .line-2 {
+            bottom: 30%;
+            right: 10%;
+            width: 25%;
+        }
+
+        /* Contenedor principal */
+        .container {
+            max-width: 900px;
+            width: 100%;
+            z-index: 10;
+            position: relative;
+        }
+
+        /* Encabezado */
+        .header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--color-accent);
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+            display: inline-block;
+            padding-bottom: 10px;
+            position: relative;
+        }
+
+        .logo::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 2px;
+            background-color: var(--color-accent-light);
+        }
+
+        .main-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 4.5rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--color-text);
+            letter-spacing: -0.5px;
+            line-height: 1.1;
+        }
+
+        .subtitle {
+            font-size: 1.4rem;
+            color: var(--color-text-light);
+            font-weight: 400;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Tarjetas de contenido */
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .card {
+            background-color: var(--color-surface);
+            border-radius: 12px;
+            padding: 40px 30px;
+            box-shadow: 0 5px 20px var(--color-shadow);
+            transition: all 0.3s ease;
+            border: 1px solid var(--color-border);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background-color: var(--color-accent-light);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px var(--color-shadow);
+        }
+
+        .card-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            background-color: var(--color-bg);
+            color: var(--color-accent);
+            font-size: 1.8rem;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover .card-icon {
+            background-color: var(--color-accent-light);
+            color: var(--color-surface);
+            transform: rotate(10deg);
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--color-text);
+        }
+
+        .card-text {
+            font-size: 0.95rem;
+            color: var(--color-text-light);
+            line-height: 1.7;
+        }
+
+        /* Sección de detalles */
+        .details-section {
+            background-color: var(--color-surface);
+            border-radius: 12px;
+            padding: 50px;
+            margin-bottom: 60px;
+            box-shadow: 0 5px 20px var(--color-shadow);
+            border: 1px solid var(--color-border);
+        }
+
+        .details-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 30px;
+            text-align: center;
+            color: var(--color-text);
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .details-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 2px;
+            background-color: var(--color-accent-light);
+        }
+
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+
+        .detail-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .detail-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--color-accent);
+            margin-bottom: 10px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .detail-label {
+            font-size: 0.9rem;
+            color: var(--color-text-light);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Cita inspiradora */
+        .quote-section {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+            padding: 0 20px;
+        }
+
+        .quote {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 500;
+            color: var(--color-text);
+            line-height: 1.5;
+            max-width: 700px;
+            margin: 0 auto 20px;
+            position: relative;
+        }
+
+        .quote::before, .quote::after {
+            content: '"';
+            color: var(--color-accent-light);
+            font-size: 3rem;
+            font-family: serif;
+            position: absolute;
+        }
+
+        .quote::before {
+            top: -20px;
+            left: -30px;
+        }
+
+        .quote::after {
+            bottom: -40px;
+            right: -30px;
+        }
+
+        .quote-author {
+            font-size: 0.9rem;
+            color: var(--color-text-lighter);
+            font-style: italic;
+        }
+
+        /* Pie de página minimalista */
+        footer {
+            width: 100%;
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid var(--color-border);
+            color: var(--color-text-lighter);
+            font-size: 0.9rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .footer-link {
+            color: var(--color-accent);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            position: relative;
+            padding-bottom: 3px;
+        }
+
+        .footer-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: var(--color-accent);
+            transition: width 0.3s ease;
+        }
+
+        .footer-link:hover {
+            color: var(--color-accent-dark);
+        }
+
+        .footer-link:hover::after {
+            width: 100%;
+        }
+
+        /* Animaciones sutiles */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .main-title {
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .subtitle {
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .card {
+            animation: fadeInUp 1s ease-out both;
+        }
+
+        .card:nth-child(1) {
+            animation-delay: 0.4s;
+        }
+
+        .card:nth-child(2) {
+            animation-delay: 0.5s;
+        }
+
+        .card:nth-child(3) {
+            animation-delay: 0.6s;
+        }
+
+        .details-section {
+            animation: fadeInUp 1s ease-out 0.8s both;
+        }
+
+        .quote-section {
+            animation: fadeInUp 1s ease-out 1s both;
+        }
+
+        /* Efecto de partículas sutiles */
+        .subtle-particle {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            background-color: var(--color-accent-light);
+            border-radius: 50%;
+            z-index: -1;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 3.5rem;
+            }
+            
+            .subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .cards-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .details-section {
+                padding: 30px;
+            }
+            
+            .quote {
+                font-size: 1.5rem;
+            }
+            
+            .quote::before {
+                left: -15px;
+            }
+            
+            .quote::after {
+                right: -15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-title {
+                font-size: 2.8rem;
+            }
+            
+            .subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .details-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .quote {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Patrón de fondo sutil -->
+    <div class="background-pattern"></div>
+    
+    <!-- Líneas decorativas sutiles -->
+    <div class="decorative-line line-1"></div>
+    <div class="decorative-line line-2"></div>
+    
+    <!-- Contenedor principal -->
+    <div class="container">
+        <!-- Encabezado -->
+        <header class="header">
+            <div class="logo">HM</div>
+            <h1 class="main-title">Hola Mundo</h1>
+            <p class="subtitle">Una interpretación minimalista y sofisticada del clásico mensaje de bienvenida al mundo digital.</p>
+        </header>
+        
+        <!-- Tarjetas de contenido -->
+        <div class="cards-container">
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-code"></i>
+                </div>
+                <h3 class="card-title">Diseño Limpio</h3>
+                <p class="card-text">Una estética minimalista con atención meticulosa a los detalles tipográficos, espaciados y jerarquías visuales.</p>
+            </div>
+            
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-palette"></i>
+                </div>
+                <h3 class="card-title">Paleta Neutra</h3>
+                <p class="card-text">Colores sutiles y armoniosos que crean una experiencia visual tranquila sin elementos discordantes.</p>
+            </div>
+            
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+                <h3 class="card-title">Responsivo</h3>
+                <p class="card-text">Diseño adaptable que mantiene su elegancia en cualquier dispositivo, desde móviles hasta pantallas grandes.</p>
+            </div>
+        </div>
+        
+        <!-- Sección de detalles -->
+        <section class="details-section">
+            <h2 class="details-title">Detalles Técnicos</h2>
+            <div class="details-grid">
+                <div class="detail-item">
+                    <div class="detail-value">HTML5</div>
+                    <div class="detail-label">Estructura Semántica</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-value">CSS3</div>
+                    <div class="detail-label">Estilos Avanzados</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-value">JS</div>
+                    <div class="detail-label">Interacciones Sutiles</div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Cita inspiradora -->
+        <section class="quote-section">
+            <blockquote class="quote">
+                La simplicidad es la máxima sofisticación. En el diseño minimalista, cada elemento tiene un propósito y cada espacio cuenta una historia.
+            </blockquote>
+            <p class="quote-author">— Principios del diseño contemporáneo</p>
+        </section>
+        
+        <!-- Pie de página -->
+        <footer>
+            <p>© 2023 Hola Mundo Minimalista. Diseño con enfoque en la elegancia y funcionalidad.</p>
+            <div class="footer-links">
+                <a href="#" class="footer-link">HTML</a>
+                <a href="#" class="footer-link">CSS</a>
+                <a href="#" class="footer-link">JavaScript</a>
+                <a href="#" class="footer-link">Diseño Web</a>
+                <a href="#" class="footer-link">Minimalismo</a>
+            </div>
+        </footer>
+    </div>
+    
+    <script>
+        // Crear partículas sutiles para el fondo
+        function createSubtleParticles() {
+            const particlesCount = 30;
+            const body = document.body;
+            
+            for (let i = 0; i < particlesCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('subtle-particle');
+                
+                // Tamaño muy pequeño
+                const size = Math.random() * 2 + 0.5;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                // Posición aleatoria
+                particle.style.left = `${Math.random() * 100}vw`;
+                particle.style.top = `${Math.random() * 100}vh`;
+                
+                // Opacidad muy baja
+                particle.style.opacity = Math.random() * 0.1 + 0.05;
+                
+                // Animación sutil
+                const duration = Math.random() * 20 + 20;
+                const delay = Math.random() * 5;
+                
+                particle.style.animation = `floatSubtle ${duration}s linear ${delay}s infinite`;
+                
+                // Añadir estilo de animación si no existe
+                if (!document.querySelector('#particle-animation')) {
+                    const style = document.createElement('style');
+                    style.id = 'particle-animation';
+                    style.textContent = `
+                        @keyframes floatSubtle {
+                            0% {
+                                transform: translateY(0) translateX(0);
+                            }
+                            25% {
+                                transform: translateY(-20px) translateX(10px);
+                            }
+                            50% {
+                                transform: translateY(-10px) translateX(20px);
+                            }
+                            75% {
+                                transform: translateY(-30px) translateX(5px);
+                            }
+                            100% {
+                                transform: translateY(0) translateX(0);
+                            }
+                        }
+                    `;
+                    document.head.appendChild(style);
+                }
+                
+                body.appendChild(particle);
+            }
+        }
+        
+        // Efecto de escritura sutil para el título
+        function typeWriterEffect() {
+            const title = document.querySelector('.main-title');
+            const originalText = title.textContent;
+            title.textContent = '';
+            
+            let i = 0;
+            function typeWriter() {
+                if (i < originalText.length) {
+                    title.textContent += originalText.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, 100); // Velocidad lenta y pausada
+                }
+            }
+            
+            // Iniciar después de un breve retraso
+            setTimeout(typeWriter, 500);
+        }
+        
+        // Efecto de conteo para los valores
+        function animateValues() {
+            const values = document.querySelectorAll('.detail-value');
+            
+            values.forEach(value => {
+                const originalText = value.textContent;
+                const isNumber = !isNaN(parseInt(originalText));
+                
+                if (isNumber) {
+                    const target = parseInt(originalText);
+                    let current = 0;
+                    const increment = target / 30; // Más lento
+                    const timer = setInterval(() => {
+                        current += increment;
+                        if (current >= target) {
+                            current = target;
+                            clearInterval(timer);
+                        }
+                        value.textContent = Math.floor(current).toString();
+                    }, 50);
+                }
+            });
+        }
+        
+        // Inicializar efectos cuando la página cargue
+        document.addEventListener('DOMContentLoaded', function() {
+            createSubtleParticles();
+            typeWriterEffect();
+            
+            // Animar valores cuando la sección de detalles sea visible
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateValues();
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            const detailsSection = document.querySelector('.details-section');
+            if (detailsSection) {
+                observer.observe(detailsSection);
+            }
+            
+            // Efecto hover sutil para las tarjetas (ya implementado en CSS)
+            // Agregar un pequeño efecto de sonido visual al hacer clic en las tarjetas
+            const cards = document.querySelectorAll('.card');
+            cards.forEach(card => {
+                card.addEventListener('click', function() {
+                    this.style.transform = 'translateY(-8px) scale(1.02)';
+                    setTimeout(() => {
+                        this.style.transform = 'translateY(-8px) scale(1)';
+                    }, 150);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
