@@ -24,17 +24,17 @@ NO VOY A USAR ; (estaba pensado en que para saber si continua en la siguiente li
 ###
 ahorita voy a instalar LLVM para generar codigo IR a mano para entender este lenguaje intermedio, nota de las dependencias que voy a instalar para tomar encuenta cuando haga mi readme xd
 
-para arch linux necesito:
+para mi arch linux necesito:
 
 sudo pacman -S llvm clang lld
 llvm: Las bibliotecas core y herramientas (incluye lli para ejecutar IR)
 clang: El compilador C/C++ (útil para comparar) NO LO INSTALE
 lld: El linker de LLVM
 ----------------------------------------------
-sudo pacman -S cmake ninja   
+sudo pacman -S cmake ninja   #ninja por que segun es mas rapido por el tema de compilacion cache, o por lo menos eso dijeron en una conferencia que esta en youtube
 para compilar proyectos con LLVM
 -------------=-----------------------------------------
-# Verificar versión
+# nomas para ver si si esta instalado xd
 llvm-config --version
 
 # Probar el intérprete de IR
@@ -44,6 +44,7 @@ echo 'define i32 @main() { ret i32 42 }' | lli
 # Instalar cabeceras y bibliotecas de desarrollo
 sudo pacman -S llvm-libs
 ______________________________________________________________________________
+hay un docker file por que es la manera mas facil para mi de distribuir por si alguien lo llega a querer probar
 estrucutra de proyecto parecida a la que use en mi compresor, asi modular:
 kem/
 ├── CMakeLists.txt
@@ -68,7 +69,7 @@ kem/
 │   ├── JITEngine.cpp
 │   └── ErrorHandler.cpp
 │
-├── cli/
+├── cli/    #nada mas la interfaz jsjsjs para separar responsabilidades, eso hace que luego pueda escalar
 │   ├── CMakeLists.txt
 │   └── main.cpp
 │
@@ -80,3 +81,13 @@ kem/
     └── integration/
 
 apartir de aqui voy a empezar con el lexer
+
+eSTAba apunto de empezar con el lexer, xd peroooo se me ocurrio, como el nombre del lenguaje es KEM una lengua maya
+entonces estaria bien que las palabras reservadas esten en esa lengua (claro al principio dije que va ser en espaniol, y si por defecto va ser en espaniol), 
+entonces se me ocurrio que voy a hacer que las palabras reservadas se puedan traducir sin tanta complicacion, estaba pensando en poner en un 
+json donde voy a poner el token que ser va retornar y la palabra, entonces seria tipo solo cambiar el valor del token y como ya espesifique en los parentesis
+por defecto va ser en espaniol;
+
+otro lio es que actualmente tengo la mala practica de nombrar cosas en ingles y otras en espaniol, entonces como quiero esto para mi portafolio y hay fe de que 
+mas adelante voy a saber bien ingles jajaja entonces las variables, funciones, clases, etc que lleven un nombre descriptivo en ingles, pero como la 
+filosofia esta en que va ser en espaniol asi que por mi comodidad y por la filosofia del proyecto va ir en espaniol. (si es que termino luego si ya puedo hacer una documentacion en ingles xd)

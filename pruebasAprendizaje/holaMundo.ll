@@ -1,4 +1,3 @@
-; Esto es más claro y evita errores de conteo
 @mensaje = constant [12 x i8] c"Hola Mundo\0A\00"
 declare i32 @puts(i8*)
 
