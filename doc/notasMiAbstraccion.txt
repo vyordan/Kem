@@ -46,6 +46,8 @@ sudo pacman -S llvm-libs
 ______________________________________________________________________________
 hay un docker file por que es la manera mas facil para mi de distribuir por si alguien lo llega a querer probar
 estrucutra de proyecto parecida a la que use en mi compresor, asi modular:
+#esta estructura me imagino que no va ser la final, pues hice la estructura teniendo en cuenta solo las partes que hasta el momento se que debo hacer, y soy conciente que 
+seguramente estoy ignorando :)
 kem/
 ├── CMakeLists.txt
 ├── README.md
