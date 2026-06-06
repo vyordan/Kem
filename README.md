@@ -1,1 +1,2 @@
+# KEM - Lenguaje de Programacion
 KEM sera un compilador cuyo propósito es permitir que personas hispanohablantes (y hablantes de lenguas mayas) aprendan programación sin la barrera del inglés. Las palabras reservadas son configurables mediante JSON, por lo que se puede traducir el lenguaje completo a cualquier idioma. El compilador estara escrito en C++ y usara LLVM para generar código en memoria y ejecutarlo vía JIT
