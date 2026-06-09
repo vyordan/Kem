@@ -1,0 +1,32 @@
+# Build
+build/
+cmake-build-*/
+*.o
+*.a
+*.so
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+.clangd/
+compile_commands.json
+.cache/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Binarios generados
+/build/cli/kem
+/build/tests/kem_test_*
+
+# CMake
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+install_manifest.txt
+CTestTestfile.cmake
+_deps/
