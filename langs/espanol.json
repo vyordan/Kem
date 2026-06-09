@@ -1,0 +1,31 @@
+{
+  "_nombre": "espanol",
+  "_descripcion": "Archivo de idioma español para KEM — idioma por defecto",
+  "_version": "0.1",
+
+  "entero":        "KW_ENTERO",
+  "decimal":       "KW_DECIMAL",
+  "texto":         "KW_TEXTO",
+  "booleano":      "KW_BOOLEANO",
+
+  "funcion":       "KW_FUNCION",
+  "procedimiento": "KW_PROC",
+  "devolver":      "KW_DEVOLVER",
+  "inicio":        "KW_INICIO",
+
+  "si":            "KW_SI",
+  "sino":          "KW_SINO",
+  "mientras":      "KW_MIENTRAS",
+  "hasta":         "KW_HASTA",
+  "paso":          "KW_PASO",
+
+  "verdadero":     "KW_VERDADERO",
+  "falso":         "KW_FALSO",
+  "y":             "KW_Y",
+  "o":             "KW_O",
+  "no":            "KW_NO",
+
+  "estructura":    "KW_ESTRUCTURA",
+  "referencia":    "KW_REF",
+  "enlazar":       "KW_ENLAZAR"
+}
