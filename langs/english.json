@@ -1,0 +1,31 @@
+{
+  "_nombre": "english",
+  "_descripcion": "English language file for KEM — demonstrates the multi-language system",
+  "_version": "0.1",
+
+  "int":           "KW_ENTERO",
+  "float":         "KW_DECIMAL",
+  "string":        "KW_TEXTO",
+  "bool":          "KW_BOOLEANO",
+
+  "function":      "KW_FUNCION",
+  "procedure":     "KW_PROC",
+  "return":        "KW_DEVOLVER",
+  "main":          "KW_INICIO",
+
+  "if":            "KW_SI",
+  "else":          "KW_SINO",
+  "while":         "KW_MIENTRAS",
+  "until":         "KW_HASTA",
+  "step":          "KW_PASO",
+
+  "true":          "KW_VERDADERO",
+  "false":         "KW_FALSO",
+  "and":           "KW_Y",
+  "or":            "KW_O",
+  "not":           "KW_NO",
+
+  "struct":        "KW_ESTRUCTURA",
+  "ref":           "KW_REF",
+  "link":          "KW_ENLAZAR"
+}
