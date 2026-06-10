@@ -49,9 +49,9 @@ llvm_map_components_to_libnames(LLVM_LIBS
 # Todo el compilador vive aquí. El CLI, los tests, y en el futuro
 # grpc/ y web/ linkean contra libkem — sin duplicar código.
 add_library(libkem STATIC
-    #src/Token.cpp
-    #src/ErrorHandler.cpp
-    #src/LangConfig.cpp
+    src/Token.cpp
+    src/ErrorHandler.cpp
+    src/LangConfig.cpp
     #src/Lexer.cpp
 
     # src/AST.cpp
