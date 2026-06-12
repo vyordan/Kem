@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.20)
-project(kem VERSION 0.1.0 LANGUAGES CXX)
+project(kem VERSION 0.1.0 LANGUAGES C CXX)   # Añadido C para que LLVM pueda comprobar histedit.h
 
 # ── Estándar C++ ───────────────────────────────────────────────────────────────
 set(CMAKE_CXX_STANDARD 20)
@@ -32,18 +32,13 @@ message(STATUS "LLVM include dirs: ${LLVM_INCLUDE_DIRS}")
 include_directories(${LLVM_INCLUDE_DIRS})
 add_definitions(${LLVM_DEFINITIONS})
 
-# Componentes de LLVM que necesitamos en la fase final (JIT)
-# En la Fase 1 solo necesitamos "core", pero declaramos todos
-# para que el CMakeLists no cambie entre fases.
-llvm_map_components_to_libnames(LLVM_LIBS
-    core
-#    orcjit
-#    native
-#    analysis
-#    passes
-#    support
-#    irreader
+# Obtener las bibliotecas de LLVM usando llvm-config (funciona con versionado)
+execute_process(
+    COMMAND llvm-config --libs core
+    OUTPUT_VARIABLE LLVM_LIBS_RAW
+    OUTPUT_STRIP_TRAILING_WHITESPACE
 )
+separate_arguments(LLVM_LIBS UNIX_COMMAND ${LLVM_LIBS_RAW})
 
 # ── libkem (librería estática) ─────────────────────────────────────────────────
 # Todo el compilador vive aquí. El CLI, los tests, y en el futuro
@@ -52,7 +47,7 @@ add_library(libkem STATIC
     src/Token.cpp
     src/ErrorHandler.cpp
     src/LangConfig.cpp
-    #src/Lexer.cpp
+    src/Lexer.cpp
 
     # src/AST.cpp
     # src/Parser.cpp
