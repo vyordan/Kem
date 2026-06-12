@@ -48,9 +48,8 @@ add_library(libkem STATIC
     src/ErrorHandler.cpp
     src/LangConfig.cpp
     src/Lexer.cpp
-
-    # src/AST.cpp
-    # src/Parser.cpp
+    src/AST.cpp
+    src/Parser.cpp
     # src/SemanticAnalyzer.cpp
     # src/IRGenerator.cpp
     # src/JITEngine.cpp
