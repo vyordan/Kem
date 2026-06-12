@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="doc/xd (1).png" alt="KEM logo extendido" width="200"/>
+  <img src="doc/xd (1).png" alt="KEM logo extendido" width="250"/>
   
   # KEM
   
