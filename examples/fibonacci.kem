@@ -1,0 +1,13 @@
+// Ejemplo KEM: Fibonacci recursivo
+// Demuestra: funciones, flujo de control si/sino, devolver
+
+funcion fibonacci(entero n) entero {
+    si n < 2 {
+        devolver n
+    }
+    devolver fibonacci(n - 1) + fibonacci(n - 2)
+}
+
+inicio {
+    entero resultado = fibonacci(10)
+}

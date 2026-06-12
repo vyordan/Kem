@@ -47,7 +47,7 @@ add_library(libkem STATIC
     src/Token.cpp
     src/ErrorHandler.cpp
     src/LangConfig.cpp
-    #src/Lexer.cpp
+    src/Lexer.cpp
 
     # src/AST.cpp
     # src/Parser.cpp
@@ -71,10 +71,10 @@ target_link_libraries(libkem PUBLIC
 add_subdirectory(cli)
 
 # ── Tests ──────────────────────────────────────────────────────────────────────
-##option(KEM_BUILD_TESTS "Compilar los tests" ON)
-##if(KEM_BUILD_TESTS)
-##    add_subdirectory(tests)
-##endif()
+option(KEM_BUILD_TESTS "Compilar los tests" ON)
+if(KEM_BUILD_TESTS)
+    add_subdirectory(tests)
+endif()
 
 # ── Copiar langs/ al directorio de build ──────────────────────────────────────
 # Para que ./kem pueda encontrar langs/espanol.json sin rutas absolutas
